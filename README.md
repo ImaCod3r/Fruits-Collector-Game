@@ -27,7 +27,7 @@ Este é um jogo de console simples onde o jogador controla um personagem que pre
 🔗 **EN-EN**
 # Fruits Collector Game
 
-## Project
+### Project
 
 This is a simple console game where the player controls a character that needs to collect fruits on a board. The game has obstacles that must be avoided to not lose. The goal is to collect 10 fruits to win the game.
 

@@ -28,6 +28,7 @@ prevFruitY = 0
 obstacle = "#"
 obstacleX = 0
 obstacleY = 0
+obstacles = [] # An iterable of obstacles position
 
 # --- GAME FUNCTIONS ---#
 
@@ -96,16 +97,17 @@ def UpdateObstacle():
 
     obstacleY = random.randint(0, len(board) - 1)
     obstacleX = random.randint(0, len(board[obstacleY][0]) - 1)
-
+    obstacles.append((obstacleX, obstacleY))  
     board[obstacleY][0] = updateObjects(board[obstacleY][0], obstacleX, obstacle)
     os.system("cls||clear")
 
 # Check if the player has collided with an obstacle
 def CheckObstacleColision():
     global playerX, playerY, obstacleX, obstacleY
-    if playerX == obstacleX and playerY == obstacleY:
-        print("Game Over!")
-        exit()
+    for obstacleX, obstacleY in obstacles:
+        if playerX == obstacleX and playerY == obstacleY:
+            print("Game Over!")
+            exit()
 
 # --- USER FUNCTIONS --- #
 # Waits for the user input to update de player position according to PlayerY & PlayerX
@@ -136,9 +138,9 @@ def playerInput():
 UpdateObstacle() # Initialize obstacle's position
 UpdateFruit() # Initialize fruit's position
 while True:
+    UpdateGame()
+    DrawBoard()
     if points < 10:   
-        UpdateGame()
-        DrawBoard()
         playerInput()
     else:
         print("You won!")
